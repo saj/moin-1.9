@@ -936,9 +936,8 @@ class Parser:
             self._close_item(result)
             self.in_li = 1
             css_class = None
-            if self.line_was_empty and not self.first_list_item:
-                css_class = 'gap'
             result.append(self.formatter.listitem(1, css_class=css_class, style="list-style-type:none"))
+        result.append(self.formatter.paragraph(1))
         return ''.join(result)
 
     def _li_none_repl(self, match, groups):
@@ -947,8 +946,6 @@ class Parser:
         self._close_item(result)
         self.in_li = 1
         css_class = None
-        if self.line_was_empty and not self.first_list_item:
-            css_class = 'gap'
         result.append(self.formatter.listitem(1, css_class=css_class, style="list-style-type:none"))
         return ''.join(result)
 
@@ -958,9 +955,8 @@ class Parser:
         self._close_item(result)
         self.in_li = 1
         css_class = None
-        if self.line_was_empty and not self.first_list_item:
-            css_class = 'gap'
         result.append(self.formatter.listitem(1, css_class=css_class))
+        result.append(self.formatter.paragraph(1))
         return ''.join(result)
 
     def _ol_repl(self, match, groups):
